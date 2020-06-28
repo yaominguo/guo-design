@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { ButtonType, ButtonSize } from './components/Button/button'
+import Button, { ButtonType, ButtonSize } from './components/Button/button';
 
 const App: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-    </div >
+    </div>
   );
 };
 
