@@ -5,7 +5,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Button disabled>Hello</Button>
+        <Button className="custom" size={ButtonSize.Small}>Hello</Button>
+        <Button btnType={ButtonType.Link} target="_blank" href="http://www.baidu.com">Hello</Button>
+        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Hello</Button>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -18,7 +20,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-    </div>
+    </div >
   );
 };
 
