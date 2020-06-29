@@ -1,25 +1,15 @@
 import React from 'react';
-import Button, { ButtonType, ButtonSize } from './components/Button/button';
+import Menu from './components/Menu/menu'
+import MenuItem from './components/Menu/menuitem'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <Button className="custom" size={ButtonSize.Small}>Hello</Button>
-        <Button btnType={ButtonType.Link} target="_blank" href="http://www.baidu.com">Hello</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Hello</Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menu defaultIndex={0} mode="vertical" onSelect={(index) => alert(index)}>
+        <MenuItem index={0}>menu1</MenuItem>
+        <MenuItem disabled index={1}>menu2</MenuItem>
+        <MenuItem index={2}>menu3</MenuItem>
+      </Menu>
     </div>
   );
 };
