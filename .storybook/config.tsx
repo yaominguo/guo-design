@@ -1,7 +1,8 @@
-import React from 'react'
 import '../src/styles/index.scss'
-// import { addDecorator } from '@storybook/react'
-
+import React from 'react'
+import { configure, addDecorator, addParameters } from '@storybook/react'
+import { withInfo } from '@storybook/addon-info'
+addDecorator(withInfo)
 // const styles: React.CSSProperties = {
 //   textAlign: 'center',
 // }
