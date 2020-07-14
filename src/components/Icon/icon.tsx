@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -8,10 +8,11 @@ library.add(fas)
 export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark'
 
 export interface IconProps extends FontAwesomeIconProps {
+  /**主题颜色 */
   theme?: ThemeProps;
 }
 
-const Icon: React.FC<IconProps> = (props) => {
+export const Icon: FC<IconProps> = (props) => {
   const { className, theme, ...restProps } = props
   const classes = classNames('guo-icon', className, {
     [`icon-${theme}`]: theme,
@@ -19,6 +20,6 @@ const Icon: React.FC<IconProps> = (props) => {
   return (
     <FontAwesomeIcon className={classes} {...restProps} />
   )
-}
+};
 
-export default Icon
+export default Icon;

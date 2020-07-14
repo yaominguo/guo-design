@@ -1,24 +1,16 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-// import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions'
 import Button from './button'
 
-const defaultButton = () => <Button>Button</Button>
-const buttonWithSize = () => (
+const ButtonComponent = () => (
   <div>
-    <Button size="lg">LargeButton</Button>
-    <Button size="sm">SmallButton</Button>
-  </div>
-)
-const buttonWithType = () => (
-  <div>
-    <Button btnType="primary">PrimaryButton</Button>
+    <Button size="lg" onClick={action('lg clicked')}>LargeButton</Button>
+    <Button size="sm" btnType="primary" onClick={action('sm clicked')}>SmallPrimaryButton</Button>
     <Button btnType="danger">DangerButton</Button>
     <Button btnType="link" href="https://www.google.com">LinkButton</Button>
   </div>
 )
 
 storiesOf('Button Component', module)
-  .add('Button', defaultButton)
-  .add('不同尺寸 Button', buttonWithSize)
-  .add('不同类型 Button', buttonWithType)
+  .add('Button', ButtonComponent)

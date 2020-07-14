@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import classNames from 'classnames'
 import Icon from '../Icon/icon'
 
 export type AlertType = 'primary' | 'success' | 'danger' | 'info'
 
 export interface AlertProps {
+  /**展示信息 */
   message: string;
+  /**Alert 类型 */
   type?: AlertType;
+  /**附带信息 */
   description?: string;
+  /**是否可关闭 */
   closable?: boolean;
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+export const Alert: FC<AlertProps> = (props) => {
   const [visiable, setVisiable] = useState(true)
   const { message, type = 'primary', description, closable = false } = props
   const classes = classNames('guo-alert', {
@@ -28,6 +32,6 @@ const Alert: React.FC<AlertProps> = (props) => {
       {description ? <div><h5>{message}</h5><p>{description}</p></div> : message}
     </div>
   )
-}
+};
 
-export default Alert
+export default Alert;

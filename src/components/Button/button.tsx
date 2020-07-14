@@ -21,8 +21,12 @@ type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 /**
+ * 页面中最常用的按钮元素，适合用于完成特定的交互
+ * ### 引用方法
  * 
- * Button组件
+ * ~~~js
+ * import {Button} from 'guo-design'
+ * ~~~
  */
 export const Button: FC<ButtonProps> = (props) => {
   const {
