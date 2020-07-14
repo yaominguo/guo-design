@@ -20,10 +20,9 @@ interface BaseButtonProps {
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
-
 /**
- * 这个一个Button组件
  * 
+ * Button组件
  */
 export const Button: FC<ButtonProps> = (props) => {
   const {

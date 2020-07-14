@@ -1,4 +1,3 @@
-const path = require('path')
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
@@ -6,11 +5,8 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-links',
   ],
-  typescript: {
-    reactDocgen: 'react-docgen',
-  },
   webpackFinal: async config => {
-    await config.module.rules.push({
+    config.module.rules.push({
       test: /\.tsx?$/,
       use: [
         {
@@ -22,8 +18,7 @@ module.exports = {
         {
           loader: require.resolve("react-docgen-typescript-loader"),
           options: {
-            tsconfigPath: path.join(__dirname, '../tsconfig.json'),
-            propFilter: (prop) => {
+            propFilter: prop => {
               if (prop.parent) {
                 return !prop.parent.fileName.includes("node_modules")
               }
