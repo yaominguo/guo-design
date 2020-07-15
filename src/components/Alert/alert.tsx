@@ -17,7 +17,7 @@ export interface AlertProps {
 
 export const Alert: FC<AlertProps> = (props) => {
   const [visiable, setVisiable] = useState(true)
-  const { message, type = 'primary', description, closable = false } = props
+  const { message, type, description, closable } = props
   const classes = classNames('guo-alert', {
     [`guo-alert-${type}`]: type,
     'none': !visiable,
@@ -33,5 +33,8 @@ export const Alert: FC<AlertProps> = (props) => {
     </div>
   )
 };
-
+Alert.defaultProps = {
+  type: 'primary',
+  closable: false,
+}
 export default Alert;

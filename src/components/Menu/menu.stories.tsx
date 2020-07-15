@@ -1,11 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
 import Menu from './menu'
 import MenuItem from './menuitem'
 
 export const MenuComponent = () => (
-  <Menu defaultIndex='0' mode="vertical" onSelect={(index) => action(`clicked ${index} item`)}>
+  <Menu defaultIndex='0' mode="vertical" onSelect={(index) => alert(`clicked item ${index}`)}>
     <MenuItem>menu1</MenuItem>
     <MenuItem disabled>menu2</MenuItem>
     <MenuItem>menu3</MenuItem>

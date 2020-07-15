@@ -4,6 +4,7 @@ import Icon from './icon'
 
 const IconComponent = () => (
   <div>
+    <Icon icon="music" />
     <Icon icon="home" theme="success" />
     <Icon icon="plus" theme="danger" />
   </div>
