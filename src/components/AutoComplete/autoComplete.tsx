@@ -82,10 +82,11 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }
   const generateDropdown = () => {
     return (
-      <ul>
+      <ul className="guo-suggestion-list">
+        {loading && <div className="suggestion-loading-icon"><Icon icon="spinner" spin /></div>}
         {suggestions.map((item, index) => {
           const classes = classNames('suggestion-item', {
-            'item-highlighted': index === highlightIndex
+            'is-active': index === highlightIndex
           })
           return (
             <li className={classes} key={index} onClick={() => handleSelect(item)}>
@@ -104,8 +105,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         onKeyDown={handleKeyDown}
         {...restProps}
       />
-      {loading && <Icon icon="spinner" spin />}
-      {(suggestions.length > 0) && generateDropdown()}
+      {generateDropdown()}
     </div>
   )
 };
