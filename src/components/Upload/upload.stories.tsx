@@ -9,10 +9,10 @@ const defaultFileList: UploadFile[] = [
   { uid: '333', size: 1234, name: '3.md', status: 'error', percent: 50 },
 ]
 
-const renameFileName = (file: File) => {
-  const newFile = new File([file], 'new_name.png', { type: file.type })
-  return Promise.resolve(newFile)
-}
+// const renameFileName = (file: File) => {
+//   const newFile = new File([file], 'new_name.png', { type: file.type })
+//   return Promise.resolve(newFile)
+// }
 // const checkFileSize = (file: File) => {
 //   if (Math.round(file.size / 1024) > 1000) {
 //     alert('file too big')
@@ -24,7 +24,8 @@ const SimpleUpload = () => {
   return (
     <Upload
       // beforeUpload={checkFileSize}
-      action="https://jsonplaceholder.typicode.com/posts/"
+      // action="https://jsonplaceholder.typicode.com/posts/"
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       onProgress={action('progress')}
       onSuccess={action('success')}
       onError={action('error')}
