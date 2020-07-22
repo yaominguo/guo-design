@@ -40,7 +40,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
       setSuggestions([])
     }
     setHighlightIndex(-1)
-  }, [debounceValue])
+  }, [debounceValue, fetchSuggestions])
   const highlight = (index: number) => {
     if (index < 0) index = 0
     if (index >= suggestions.length) index = suggestions.length - 1
