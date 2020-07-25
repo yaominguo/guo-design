@@ -2,6 +2,7 @@ import React, { FC, useRef, ChangeEvent, useState } from 'react'
 import axios from 'axios'
 import Button from '../Button/button'
 import UploadList from './uploadList'
+import Dragger from './dragger'
 
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
 export interface UploadFile {
@@ -51,6 +52,8 @@ export interface UploadProps {
   accept?: string;
   /**是否可以多选 */
   multiple?: boolean;
+  /**是否可以拖动上传 */
+  drag?: boolean;
 }
 export const Upload: FC<UploadProps> = (props) => {
   const {
@@ -68,6 +71,8 @@ export const Upload: FC<UploadProps> = (props) => {
     withCredentials,
     accept,
     multiple,
+    drag,
+    children,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
@@ -163,12 +168,18 @@ export const Upload: FC<UploadProps> = (props) => {
   }
   return (
     <div className="guo-upload-component">
-      <Button
+      {/* <Button
         btnType="primary"
         onClick={handleClick}
       >
         Upload File
-      </Button>
+      </Button> */}
+      <div className="guo-upload-input"
+        style={{ display: 'inline-block' }}
+        onClick={handleClick}
+      >
+        {drag ? <Dragger onFile={files => uploadFiles(files)}>{children}</Dragger> : children}
+      </div>
       <input
         className="guo-file-input"
         type="file"

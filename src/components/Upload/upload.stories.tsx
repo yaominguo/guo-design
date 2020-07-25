@@ -36,6 +36,7 @@ const SimpleUpload = () => {
       headers={{ 'X-Powered-By': 'Guo' }}
       accept=".png"
       multiple
+      drag
     />
   )
 }
