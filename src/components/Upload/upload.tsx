@@ -39,6 +39,18 @@ export interface UploadProps {
   onChange?: (file: File) => void;
   /**删除文件回调函数 */
   onRemove?: (file: UploadFile) => void;
+  /**请求头 */
+  headers?: { [key: string]: any };
+  /**文件名 */
+  name?: string;
+  /**请求参数数据 */
+  data?: { [key: string]: any };
+  /**是否携带cookie */
+  withCredentials?: boolean;
+  /**限制上传的文件类型 */
+  accept?: string;
+  /**是否可以多选 */
+  multiple?: boolean;
 }
 export const Upload: FC<UploadProps> = (props) => {
   const {
@@ -50,6 +62,12 @@ export const Upload: FC<UploadProps> = (props) => {
     onError,
     onChange,
     onRemove,
+    name,
+    headers,
+    data,
+    withCredentials,
+    accept,
+    multiple,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
@@ -84,16 +102,25 @@ export const Upload: FC<UploadProps> = (props) => {
       percent: 0,
       raw: file,
     }
-    setFileList([_file, ...fileList])
+    setFileList(prevList => {
+      return [_file, ...prevList]
+    })
     const formData = new FormData()
-    formData.append(file.name, file)
+    formData.append(name || 'file', file)
+    if (data) {
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+      })
+    }
     axios.post(action, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
         'Access-Control-Allow-Headers': 'Authorization,Origin, X-Requested-With, Content-Type, Accept',
+        ...headers,
       },
+      withCredentials,
       onUploadProgress: (e) => {
         const percentage = Math.round((e.loaded * 100) / e.total) || 0
         if (percentage < 100) {
@@ -148,6 +175,8 @@ export const Upload: FC<UploadProps> = (props) => {
         style={{ display: 'none' }}
         ref={fileInput}
         onChange={handleFileChange}
+        accept={accept}
+        multiple={multiple}
       />
       <UploadList
         fileList={fileList}
@@ -156,5 +185,7 @@ export const Upload: FC<UploadProps> = (props) => {
     </div>
   )
 };
-
+Upload.defaultProps = {
+  name: 'file',
+}
 export default Upload;
